@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from django.http import JsonResponse
 
-# Create your views here.
+from .schema import schema
+
+
+def index(request):
+    query = schema.execute('{ classify(handle: "kenny") { male, female, brand } }')
+
+    if query.errors:
+        return JsonResponse(query.errors)
+
+    return JsonResponse(query.data)

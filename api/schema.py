@@ -1,10 +1,29 @@
-import graphene
+from graphene import (
+    ObjectType,
+    Schema,
+    String,
+    Float,
+    Field,
+)
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(argument=graphene.String(default_value="stranger"))
 
-    def resolve_hello(self, info, argument):
-        return 'Hello ' + argument
+class Classification(ObjectType):
+    male = Float()
+    female = Float()
+    brand = Float()
 
 
-schema = graphene.Schema(query=Query)
+class Query(ObjectType):
+    classify = Field(Classification, { 'handle': String(required=True) })
+
+    def resolve_classify(self, info, handle):
+        result = Classification()
+
+        result.male = 0.33
+        result.female = 0.33
+        result.brand = 0.33
+
+        return result
+
+
+schema = Schema(query=Query)
