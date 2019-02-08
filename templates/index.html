@@ -60,7 +60,7 @@
     </body>
 
     <script src="{% static 'c3.min.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
     <script>
         // Builds a GraphQL query with the specified twitter handle
         function buildClassifyQuery(handle) {
@@ -69,16 +69,18 @@
 
         // Executes a classify query with the given handle, then executes the callback
         function classify(handle, cb) {
-            $.post('/api', buildClassifyQuery(handle), cb);
+            $.post('/api/', buildClassifyQuery(handle), cb);
         }
 
         $(document).ready(function() {
+            $.ajaxSetup({ headers: { 'X-CSRFToken': '{{ csrf_token }}' } });
+
             // Intercepts the form submit event and dumps the results into #classifyResults div
             $('#classifyForm').on('submit', function(e) {
                 e.preventDefault();
 
-                classify($('#handle').val(), function(res) {
-                    $('#classifyResults').html(JSON.stringify(res.data.classify));
+                classify($('#handle').val(), function(data) {
+                    $('#classifyResults').html(JSON.stringify(data.classify));
                 });
             });
         });
