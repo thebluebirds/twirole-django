@@ -1,0 +1,28 @@
+div#chart {
+    height: 360px;
+}
+
+.c3-chart-arc.c3-target text {
+    fill: #ffffff;
+}
+
+img.logo {
+    height: 160px;
+}
+
+input#handle {
+    max-width: 400px;
+}
+
+/* For the splash */
+div.jumbotron {
+    padding: 32px 32px;
+}
+
+.navbar-dark .navbar-nav a.nav-link {
+    color: #ededed;
+}
+
+.navbar-dark .navbar-nav a.nav-link.active {
+    color: #ffffff;
+}

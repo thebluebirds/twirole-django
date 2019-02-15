@@ -1,12 +1,17 @@
-from django.http import JsonResponse
+from django.http import (
+    JsonResponse,
+    HttpResponse,
+)
+from django.views.decorators.http import require_http_methods
 
 from .schema import schema
 
 
+@require_http_methods(['POST'])
 def index(request):
-    query = schema.execute('{ classify(handle: "kenny") { male, female, brand } }')
+    graphql_response = schema.execute(request.POST.get('query'))
 
-    if query.errors:
-        return JsonResponse(query.errors)
+    if graphql_response.errors:
+        return HttpResponse(graphql_response.errors)
 
-    return JsonResponse(query.data)
+    return JsonResponse(graphql_response.data)

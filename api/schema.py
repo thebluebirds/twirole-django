@@ -1,3 +1,9 @@
+"""
+Defines the GraphQL API for the classification models.
+
+Composite objects can be built by using Classification objects within each other.
+"""
+
 from graphene import (
     ObjectType,
     Schema,
@@ -5,6 +11,10 @@ from graphene import (
     Float,
     Field,
 )
+
+from random import random
+
+from .twirole import twirole_classify
 
 
 class Classification(ObjectType):
@@ -19,9 +29,14 @@ class Query(ObjectType):
     def resolve_classify(self, info, handle):
         result = Classification()
 
-        result.male = 0.33
-        result.female = 0.33
-        result.brand = 0.33
+        # Uses TwiRole to classify
+        twirole_results = twirole_classify(handle)
+
+        result.male = twirole_results['male']
+        result.female = twirole_results['female']
+        result.brand = twirole_results['brand']
+
+        print('classified', twirole_results)
 
         return result
 

@@ -1,0 +1,65 @@
+{% load static %}
+
+<script src="{% static 'd3.min.js' %}"></script>
+<script src="{% static 'c3.min.js' %}"></script>
+<script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'bootstrap.min.js' %}"></script>
+<script>
+    // Builds a GraphQL query with the specified twitter handle
+    function buildClassifyQuery(twitterHandle) {
+        console.log('Classifying ' + twitterHandle);
+        return { query: `{ classify(handle: "${twitterHandle}") { male, female, brand } }` };
+    }
+
+    // Executes a classify query with the given handle, then executes the callback
+    function classify(twitterHandle, cb) {
+        $.post('/api/', buildClassifyQuery(twitterHandle), cb);
+    }
+
+    // Gets the response from the GraphQL query and transforms them into columns for the C3.js pie chart
+    function buildPieChartColumns(graphQLResponse) {
+        return [
+            ['male', graphQLResponse.classify.male],
+            ['female', graphQLResponse.classify.female],
+            ['brand', graphQLResponse.classify.brand],
+        ];
+    }
+
+    // showResults goes here
+
+    $(document).ready(function() {
+        $.ajaxSetup({ headers: { 'X-CSRFToken': '{{ csrf_token }}' } });
+
+        // Generates the initial chart object
+        var chart = c3.generate({
+            data: {
+                bindto: '#chart',
+                columns: [['no data', 1.00]],
+                colors: {
+                    'no data': '#000000',
+                    'male': '#0066CC',
+                    'female': '#FF6666',
+                    'brand': '#808080'
+                },
+                type : 'pie'
+            }
+        });
+
+        $('#handle').on('keypress', function(e) {
+            var code = e.keyCode || e.which;
+            console.log(e);
+
+        });
+
+        // Intercepts the form submit event and dumps the results into #classifyResults div
+        $('#classifyForm').on('submit', function(e) {
+            e.preventDefault();
+            var twitterHandle = $('#handle').val();
+            classify(twitterHandle, function(graphQLResponse) {
+                console.log(graphQLResponse);
+                chart.load({ columns: buildPieChartColumns(graphQLResponse) });
+                chart.unload({ ids: 'no data' });
+            });
+        });
+    });
+</script>

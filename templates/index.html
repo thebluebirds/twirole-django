@@ -1,121 +1,21 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
-        <style>
-            div#chart {
-                height: 480px;
-            }
-
-            .c3-chart-arc.c3-target text {
-                fill: #ffffff;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'twirole.css' %}" />
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">TwiRole</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/liuqingli/TwiRole" target="_blank">Repository</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        {% include 'partials/navbar.html' %}
 
-        <br />
+        {% include 'partials/splash.html' %}
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-12">
-                    <form id="classifyForm">
-                        <b>Twitter handle</b>
-                        <br />
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">@</span>
-                            </div>
-                            <input id="handle" type="text" class="form-control" placeholder="mytwitterhandle123" />
-                        </div>
-                        <br />
-                        <button class="btn btn-success">Analyze</button>
-                    </form>
+        {% include 'partials/form.html' %}
 
-                    <br />
-                </div>
-
-                <div class="col-lg-8 col-sm-12">
-                    <p>
-                        Type in a Twitter handle (e.g. <i>@john123</i>) and press <b>"Analyze"</b>.
-                    </p>
-
-                    <div id="chart">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {% include 'partials/results.html' %}
     </body>
 
-    <script src="{% static 'd3.min.js' %}"></script>
-    <script src="{% static 'c3.min.js' %}"></script>
-    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
-    <script>
-        // Builds a GraphQL query with the specified twitter handle
-        function buildClassifyQuery(twitterHandle) {
-            return { query: `{ classify(handle: "${handle}") { male, female, brand } }` };
-        }
-
-        // Executes a classify query with the given handle, then executes the callback
-        function classify(twitterHandle, cb) {
-            $.post('/api/', buildClassifyQuery(twitterHandle), cb);
-        }
-
-        // Gets the response from the GraphQL query and transforms them into columns for the C3.js pie chart
-        function buildPieChartColumns(graphQLResponse) {
-            return [
-                ['male', graphQLResponse.classify.male],
-                ['female', graphQLResponse.classify.female],
-                ['brand', graphQLResponse.classify.brand],
-            ];
-        }
-
-        $(document).ready(function() {
-            $.ajaxSetup({ headers: { 'X-CSRFToken': '{{ csrf_token }}' } });
-
-            // Intercepts the form submit event and dumps the results into #classifyResults div
-            $('#classifyForm').on('submit', function(e) {
-                e.preventDefault();
-
-                var twitterHandle = $('#handle').val();
-                classify(twitterHandle, function(graphQLResponse) {
-                    var chart = c3.generate({
-                        data: {
-                            columns: buildPieChartColumns(graphQLResponse),
-                            bindto: '#chart',
-                            type : 'pie',
-                            onclick: function (d, i) { console.log("onclick", d, i); },
-                            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-                            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-                        }
-                    });
-                });
-            });
-        });
-    </script>
-
-
+    {% include 'partials/js.html' %}
 </html>
