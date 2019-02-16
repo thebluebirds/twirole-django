@@ -10,7 +10,8 @@ from subprocess import (
 
 
 def twirole_classify(twitter_handle):
-    proc = run(['./classify.sh', twitter_handle],
+    cmd = f'\'source activate py27; ./classify.sh {twitter_handle}\''
+    proc = run(['sh', '-c', cmd],
                cwd='/Users/kkworden/Code/school/Twirole',
                capture_output=True)
 
