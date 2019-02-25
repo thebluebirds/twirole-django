@@ -26,3 +26,23 @@ div.jumbotron {
 .navbar-dark .navbar-nav a.nav-link.active {
     color: #ffffff;
 }
+
+.row.loading {
+    display: none;
+}
+
+.result {
+    display: none;
+}
+
+span.male {
+    color: #0066CC;
+}
+
+span.female {
+    color: #FF6666;
+}
+
+span.brand {
+    color: #808080;
+}
