@@ -1,7 +1,7 @@
 """
 Defines the GraphQL API for the classification models.
 
-Composite objects can be built by using Classification objects within each other.
+If you need to understand what is going on, look at the graphene docs.
 """
 
 from graphene import (
@@ -43,10 +43,13 @@ class ModelOutput(ObjectType):
 class Query(ObjectType):
     classify = Field(ModelOutput, { 'handle': String(required=True) })
 
+    # When we get a graphQL query to classify a user...
+    # note that handle is passed as an output in the self.classify field
     def resolve_classify(self, info, handle):
         # Uses TwiRole to classify; returns a raw JSON dictionary
         twirole_results = classify(handle)
 
+        # Output the classification results
         output = ModelOutput()
         output.bf = coerce_to_classification(twirole_results['BF'])
         output.af = coerce_to_classification(twirole_results['AF'])
@@ -56,4 +59,5 @@ class Query(ObjectType):
         return output
 
 
+# Expose schema as a variable to be imported in our Django view
 schema = Schema(query=Query)
