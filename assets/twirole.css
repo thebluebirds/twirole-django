@@ -27,12 +27,17 @@ div.jumbotron {
     color: #ffffff;
 }
 
-.row.loading {
+.loading {
     display: none;
 }
 
 .result {
     display: none;
+}
+
+.error {
+    color: red;
+    font-size: 24pt;
 }
 
 span.male {

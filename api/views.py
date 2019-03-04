@@ -12,9 +12,10 @@ from .schema import schema
 def index(request):
     # Executes the graphQL query from the HTTP POST-body
     graphql_response = schema.execute(request.POST.get('query'))
+    response = { 'data': graphql_response.data }
 
     # If we have errors, return them to the client
     if graphql_response.errors:
-        return HttpResponse(graphql_response.errors)
+        response['errors'] = [err.message for err in graphql_response.errors]
 
-    return JsonResponse(graphql_response.data)
+    return JsonResponse(response)

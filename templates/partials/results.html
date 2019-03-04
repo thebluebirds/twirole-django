@@ -1,12 +1,12 @@
 {% load static %}
 
 <div class="container">
-    <div class="row loading">
-        <div class="col-sm-12 text-center">
-            <img src="{% static 'loading.gif' %}" />
-            <br />
-            Classifying...
-        </div>
+    <div class="text-center loading">
+        <img src="{% static 'loading.gif' %}" />
+        <br />
+        Classifying...
+    </div>
+    <div class="text-center error">
     </div>
     <div class="text-center">
         <h2 id="classified" class="result p-3"></h2>

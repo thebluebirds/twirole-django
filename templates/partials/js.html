@@ -142,6 +142,15 @@
         buildChart('#hybrid', hybrid);
     }
 
+    /*
+        Shows an error message.
+    */
+    function showError(errorMessage) {
+        $('.loading').hide();
+        $('.error').html(errorMessage);
+        $('.error').fadeIn(500);
+    }
+
     $(document).ready(function() {
         // Necessary for API calls
         $.ajaxSetup({ headers: { 'X-CSRFToken': '{{ csrf_token }}' } });
@@ -151,12 +160,17 @@
             e.preventDefault();
             $('.loading').fadeIn(500);
             $('.result').hide();
+            $('.error').hide();
 
             var twitterHandle = $('#handle').val();
             classify(twitterHandle, function(graphQLResponse) {
                 console.log(graphQLResponse);
-                var data = graphQLResponse.classify;
-                showResults(twitterHandle, data.bf, data.af, data.cnn, data.hybrid);
+                if (graphQLResponse.errors) {
+                    showError(graphQLResponse.errors);
+                } else {
+                    var data = graphQLResponse.data.classify;
+                    showResults(twitterHandle, data.bf, data.af, data.cnn, data.hybrid);
+                }
             });
         });
     });
