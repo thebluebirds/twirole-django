@@ -75,6 +75,9 @@
             size: { width: 220, height: 320 },
             grid: {
                 x: { show: false }
+            },
+            legend: {
+                show: false
             }
             // title: {
             //     text: chartTitle
@@ -101,19 +104,20 @@
 
         if (hybrid.male == hybrid.female && hybrid.female == hybrid.brand) {
             return 'UNKNOWN';
-        } else if (hybrid.male == hybrid.female) {
-            return `${maleSpan}/${femaleSpan}`;
-        } else if (hybrid.female == hybrid.brand) {
-            return `${femaleSpan}/${brandSpan}`;
-        } else if (hybrid.male == hybrid.brand) {
-            return `${maleSpan}/${brandSpan}`;
         }
 
         var max = Math.max(hybrid.male, hybrid.female, hybrid.brand);
-        console.log(max);
         if (max == hybrid.male) {
+            if (hybrid.male == hybrid.female) {
+                return `${maleSpan}/${femaleSpan}`;
+            } else if (hybrid.male == hybrid.brand) {
+                return `${maleSpan}/${brandSpan}`;
+            }
             return maleSpan;
         } else if (max == hybrid.female) {
+            if (hybrid.female == hybrid.brand) {
+                return `${femaleSpan}/${brandSpan}`;
+            }
             return femaleSpan;
         } else if (max == hybrid.brand) {
             return brandSpan;

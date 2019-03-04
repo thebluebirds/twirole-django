@@ -55,7 +55,6 @@ class Query(ObjectType):
         output.af = coerce_to_classification(twirole_results['AF'])
         output.cnn = coerce_to_classification(twirole_results['CNN'])
         output.hybrid = coerce_to_classification(twirole_results['Hybrid'])
-
         return output
 
 
