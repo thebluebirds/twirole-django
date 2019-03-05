@@ -1,7 +1,3 @@
-div#chart {
-    height: 360px;
-}
-
 .c3-chart-arc.c3-target text {
     fill: #ffffff;
 }
@@ -52,5 +48,5 @@ span.brand {
 }
 
 .spinner {
-    height: 40px;
+    height: 38px;
 }
