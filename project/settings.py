@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,11 @@ STATICFILES_DIRS = [
 # Custom variables
 APPEND_SLASH = False
 # CSRF_USE_SESSIONS = True
+
+# Webpack configuration. Searches the assets/bundles directory
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}

@@ -14,8 +14,8 @@ from graphql import GraphQLError
 def classify(twitter_handle):
     print('Classifying', twitter_handle)
     proc = run(['./classify.sh', twitter_handle],
-               # cwd='/Users/kkworden/Code/school/TwiRole',
-               cwd='/home/cs4624s19_role/TwiRole',
+               cwd='/Users/kkworden/Code/school/TwiRole',
+               # cwd='/home/cs4624s19_role/TwiRole',
                capture_output=True)
 
     raw_output = proc.stdout.decode('utf-8')

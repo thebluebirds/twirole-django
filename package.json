@@ -1,0 +1,35 @@
+{
+  "name": "twirole-django",
+  "version": "1.0.0",
+  "description": "NPM-managed packages for developing frontend applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebluebirds/twirole-django.git"
+  },
+  "author": "The Bluebirds",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thebluebirds/twirole-django/issues"
+  },
+  "homepage": "https://github.com/thebluebirds/twirole-django#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "c3": "^0.6.13",
+    "d3": "^5.9.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "webpack": "^4.29.6",
+    "webpack-bundle-tracker": "^0.4.2-beta",
+    "webpack-cli": "^3.2.3"
+  }
+}

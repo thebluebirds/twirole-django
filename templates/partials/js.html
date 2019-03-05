@@ -1,10 +1,13 @@
 {% load static %}
+{% load render_bundle from webpack_loader %}
 
 <script src="{% static 'd3.min.js' %}"></script>
 <script src="{% static 'c3.min.js' %}"></script>
 <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'bootstrap.min.js' %}"></script>
 <script>
+    window.csrf_token = '{{ csrf_token }}';
+
     // Builds a GraphQL query with the specified twitter handle
     function buildClassifyQuery(twitterHandle) {
         console.log(`Classifying ${twitterHandle}...`);
@@ -150,7 +153,7 @@
         $('.error').html(errorMessage);
         $('.error').fadeIn(500);
     }
-
+    /*
     $(document).ready(function() {
         // Necessary for API calls
         $.ajaxSetup({ headers: { 'X-CSRFToken': '{{ csrf_token }}' } });
@@ -173,5 +176,6 @@
                 }
             });
         });
-    });
+    });*/
 </script>
+{% render_bundle 'main' %}

@@ -35,11 +35,6 @@ div.jumbotron {
     display: none;
 }
 
-.error {
-    color: red;
-    font-size: 24pt;
-}
-
 span.male {
     color: #0066CC;
 }
@@ -50,4 +45,12 @@ span.female {
 
 span.brand {
     color: #808080;
+}
+
+.error {
+    color: red;
+}
+
+.spinner {
+    height: 40px;
 }

@@ -106,3 +106,8 @@ venv.bak/
 
 Pipefile.lock
 .DS_Store
+
+# Hide bundle stuff
+webpack-stats.json
+assets/bundles
+node_modules
