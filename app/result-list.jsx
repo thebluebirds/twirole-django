@@ -19,7 +19,7 @@ class ResultList extends React.Component {
 
         return (
             <div className="container">
-                { results }
+                { results.reverse() }
             </div>
         );
     }
@@ -31,5 +31,6 @@ function mapStateToProps(state) {
         results: state.app.results,
     }
 };
+
 
 export default connect(mapStateToProps)(ResultList);

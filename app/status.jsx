@@ -24,4 +24,6 @@ const mapStateToProps = function(state) {
     };
 }
 
+
+// Connect to app state so we know when to display a loading spinner
 export default connect(mapStateToProps)(Status);

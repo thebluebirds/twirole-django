@@ -28,7 +28,8 @@ const reducers = function (state, action) {
         newState.results = [...state.results, action.result];
     } else if (action.type === Actions.REMOVE_RESULT) {
         newState.status = 0;
-        newState.results = [...state.results].splice(action.index, 1);
+        newState.results = [...state.results];
+        newState.results.splice(action.index, 1);
     }
 
     console.log(newState);
