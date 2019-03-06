@@ -16,7 +16,7 @@ class Result extends React.Component {
     removeResult() {
         this.props.dispatch({
             type: Actions.REMOVE_RESULT,
-            index: this.props.key,
+            index: this.props.index,
         });
     }
 
@@ -35,7 +35,6 @@ class Result extends React.Component {
                         </div>
                         <div className="col-sm-4 align-self-center">
                             <h3>@{ this.props.data.username }</h3>
-                            <br />
                             <Classification data={this.props.data.hybrid} />
                         </div>
                         <div className="col-sm-6 align-self-center">

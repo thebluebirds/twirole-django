@@ -36,7 +36,7 @@ class Chart extends React.Component {
             },
             bar: {
                 width: {
-                    ratio: 0.3
+                    ratio: 1.0
                 }
             },
             transition: {
@@ -50,7 +50,7 @@ class Chart extends React.Component {
                 y: { show: false },
                 rotated: true,
             },
-            size: { width: 200, height: 100 },
+            size: { width: 180, height: 40 },
             grid: {
                 x: { show: false }
             },

@@ -14,7 +14,7 @@ class ResultList extends React.Component {
         let results = [];
 
         for (let i = 0; i < this.props.results.length; i++) {
-            results.push(<Result key={i} data={this.props.results[i]} />);
+            results.push(<Result key={i} index={i} data={this.props.results[i]} />);
         }
 
         return (
