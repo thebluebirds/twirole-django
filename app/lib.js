@@ -49,4 +49,4 @@ function classifyUser(twitterUsername, dispatch) {
         });
 }
 
-export { buildChart, classifyUser };
+export { classifyUser };
