@@ -15,6 +15,9 @@ class Chart extends React.Component {
 
     _update() {
         const data = this.props.data;
+        const height = this.props.height || 30;
+        const width = height * 6;
+
         this.chart = c3.generate({
             bindto: `#${this.id}`,
             data: {
@@ -50,7 +53,7 @@ class Chart extends React.Component {
                 y: { show: false },
                 rotated: true,
             },
-            size: { width: 180, height: 40 },
+            size: { width, height },
             grid: {
                 x: { show: false }
             },

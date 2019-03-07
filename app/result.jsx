@@ -34,11 +34,11 @@ class Result extends React.Component {
                             <img className="profile-pic" src={profileImageUrl} />
                         </div>
                         <div className="col-sm-4 align-self-center">
-                            <h3>@{ this.props.data.username }</h3>
                             <Classification data={this.props.data.hybrid} />
+                            <h6>@{ this.props.data.username }</h6>
                         </div>
                         <div className="col-sm-6 align-self-center">
-                            <Chart data={this.props.data.hybrid} />
+                            <Chart height={50} data={this.props.data.hybrid} />
                         </div>
                     </div>
                 </div>
