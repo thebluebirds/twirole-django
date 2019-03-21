@@ -25,7 +25,7 @@ SECRET_KEY = 'y7fi7y&c!_*%^q4j5^h0!wl0m7+s_0%_xjlsoojki#mk!v-n85'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,11 @@ STATICFILES_DIRS = [
 # Custom variables
 APPEND_SLASH = False
 # CSRF_USE_SESSIONS = True
+
+# Webpack configuration. Searches the assets/bundles directory
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}

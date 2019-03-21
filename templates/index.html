@@ -5,6 +5,7 @@
     <head>
         <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
         <link rel="stylesheet" href="{% static 'twirole.css' %}" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -12,9 +13,7 @@
 
         {% include 'partials/splash.html' %}
 
-        {% include 'partials/form.html' %}
-
-        {% include 'partials/results.html' %}
+        <div id="react-app"></div>
     </body>
 
     {% include 'partials/js.html' %}
