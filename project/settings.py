@@ -136,3 +136,5 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+TWIROLE_DIR = '/Users/kkworden/Code/school/TwiRole'
