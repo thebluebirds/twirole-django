@@ -6,6 +6,7 @@ from subprocess import run
 from json import loads
 from re import match
 from graphql import GraphQLError
+from django.conf import settings
 
 
 # Classifies the given twitter_handle using the TwiRole model. We may be able
@@ -14,8 +15,7 @@ from graphql import GraphQLError
 def classify(twitter_handle):
     print('Classifying', twitter_handle)
     proc = run(['./classify.sh', twitter_handle],
-               cwd='/Users/kkworden/Code/school/TwiRole',
-               # cwd='/home/cs4624s19_role/TwiRole',
+               cwd=settings.TWIROLE_DIR,
                capture_output=True)
 
     raw_output = proc.stdout.decode('utf-8')
