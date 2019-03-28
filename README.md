@@ -18,6 +18,16 @@ Now run the following commands from this directory:
 
 This will install everything needed to launch the server and develop.
 
+As can be seen in the `api/twirole.py` script, it runs the `./classify.sh` script in the TwiRole classifier. This script should be adjusted to meet your configuration needs.
+However, this project assumes that `./classify.sh` will correctly classify a user. 
+
+## Running the server
+
+Once properly configured, you can run the script:
+
+`./runserver.sh`
+
+**DEBUG** and **PORT** are variables configurable from within `runserver.sh`.
 
 ## File hierarchy
 The project is organized into 5 folders.
