@@ -4,7 +4,7 @@ Website for the classifier. This website is ordered in a typical Django project 
 This project is meant to run under [pipenv](https://pipenv.readthedocs.io/en/latest/). If you choose not to run under pipenv, you can install the packages as specified in the Pipfile in conda, or raw via pip.
 
 
-## Getting started (development)
+## Configuration (development)
 
 This project requires a few things to be installed:
 
@@ -16,7 +16,7 @@ Now run the following commands from this directory:
 1. `pipenv install`
 2. `npm install`
 
-This will install everything needed to launch the server and develop.
+In the `project/settings.py` file, there is a Python variable **TWIROLE_DIR**. This must point to a valid TwiRole classifier directory on the local file system.
 
 As can be seen in the `api/twirole.py` script, it runs the `./classify.sh` script in the TwiRole classifier. This script should be adjusted to meet your configuration needs.
 However, this project assumes that `./classify.sh` will correctly classify a user. 
